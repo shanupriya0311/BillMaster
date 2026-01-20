@@ -1,20 +1,62 @@
-<<<<<<< HEAD
-# React + Vite
+🧾 BillMaster Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BillMaster is a simple and efficient billing management application designed to generate, manage, and store bills digitally. It helps businesses handle billing operations smoothly with accuracy and speed.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Create and generate bills easily
 
-## React Compiler
+Manage customer details
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Calculate total amount automatically
 
-## Expanding the ESLint configuration
+Store and view previous bills
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# BillMaster
->>>>>>> 45d32fb3dde8622f1efc53d99ad49e055ef72735
+User-friendly interface
+
+Secure and reliable
+
+🛠️ Technologies Used
+
+Frontend: HTML, CSS, JavaScript
+
+Backend: Java / Spring Boot (if applicable)
+
+Database: MySQL (or specify if different)
+
+Build Tool: Maven
+
+Server: Apache Tomcat
+
+📂 Project Structure
+BillMaster/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   └── resources/
+│   └── test/
+│
+├── pom.xml
+├── README.md
+└── application.properties
+
+⚙️ Installation & Setup
+
+Clone the repository:
+
+git clone https://github.com/your-username/BillMaster.git
+
+
+Open the project in Eclipse / IntelliJ IDEA
+
+Configure database in application.properties
+
+Run the application:
+
+mvn spring-boot:run
+
+
+Open in browser:
+
+http://localhost:8080
