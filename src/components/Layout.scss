@@ -1,0 +1,60 @@
+/* ======================
+   ROOT LAYOUT
+   ====================== */
+.layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f8fafc;
+  position: relative; // 🔥 required for stacking context
+}
+
+/* ======================
+   MAIN CONTENT
+   ====================== */
+.main-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ======================
+   HAMBURGER (MOBILE ONLY)
+   ====================== */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 2000; // 🔥 MUST be higher than sidebar
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  font-size: 22px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ======================
+   MOBILE VIEW
+   ====================== */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .main-content {
+    padding: 72px 16px 16px; // space for hamburger
+    overflow-y: auto;
+    min-height: auto;
+  }
+}

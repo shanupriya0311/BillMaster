@@ -1,0 +1,136 @@
+:root {
+  --primary: #22a699;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+}
+
+/* Overlay */
+.ap-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal */
+.ap-modal {
+  background: white;
+  width: 560px;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Header */
+.ap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ap-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ap-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+/* Rows */
+.ap-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.ap-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ap-full {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.ap-group label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+/* Inputs */
+.ap-group input,
+.ap-group select {
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  outline: none;
+}
+
+.ap-group input::placeholder {
+  color: #94a3b8;
+}
+
+/* Highlight first input */
+.ap-highlight {
+  border: 2px solid var(--primary);
+}
+
+/* Footer */
+.ap-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* Buttons */
+.ap-cancel {
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: #67686a;
+  border: 1px solid var(--border);
+  cursor: pointer;
+
+}
+
+.ap-submit {
+  padding: 10px 24px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.ap-submit:hover {
+  opacity: 0.95;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .ap-modal {
+    width: 92%;
+    padding: 20px;
+  }
+
+  .ap-row {
+    flex-direction: column;
+  }
+}

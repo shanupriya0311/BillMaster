@@ -1,0 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+/* ======================
+   VARIABLES
+   ====================== */
+$teal: #2dd4bf;
+$navy: #0f172a;
+$slate: #1e293b;
+$text-muted: #94a3b8;
+$white: #ffffff;
+$glass: rgba(255, 255, 255, 0.85);
+$transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+/* Breakpoints */
+$mobile: 480px;
+$tablet: 768px;
+$laptop: 1024px;
+
+/* ======================
+   MIXIN
+   ====================== */
+@mixin respond($size) {
+    @if $size ==mobile {
+        @media (max-width: $mobile) {
+            @content;
+        }
+    }
+
+    @else if $size ==tablet {
+        @media (max-width: $tablet) {
+            @content;
+        }
+    }
+
+    @else if $size ==laptop {
+        @media (max-width: $laptop) {
+            @content;
+        }
+    }
+}
+
+/* ======================
+   HARD RESET (CRITICAL)
+   ====================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+html {
+    height: auto !important;
+    overflow-y: auto !important;
+}
+
+body {
+    min-height: 100%;
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; // iOS scroll fix
+}
+
+/* ======================
+   PAGE (NO VIEWPORT LOCK)
+   ====================== */
+.page {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f1f5f9;
+
+    @include respond(tablet) {
+        flex-direction: column;
+        min-height: auto;
+    }
+}
+
+/* ======================
+   LEFT PANEL
+   ====================== */
+.left-panel {
+    flex: 1.2; // Desktop: takes 1.2 parts of available space
+    background: linear-gradient(135deg, $navy, $slate);
+    padding: 80px;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -10%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(45, 212, 191, 0.15), transparent 70%);
+    }
+
+    @include respond(laptop) {
+        padding: 60px;
+    }
+
+    @include respond(tablet) {
+        flex: none;
+        width: 100%;
+        padding: 40px 24px;
+        text-align: center;
+        overflow: visible !important;
+    }
+}
+
+.welcome-logo-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 50px;
+
+    @include respond(tablet) {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}
+
+.logo-icon {
+    font-size: 50px;
+    color: $teal;
+
+    @include respond(mobile) {
+        font-size: 38px;
+    }
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    @include respond(mobile) {
+        font-size: 1.2rem;
+    }
+}
+
+.headline {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+
+    @include respond(laptop) {
+        font-size: 2.4rem;
+    }
+
+    @include respond(tablet) {
+        font-size: 2rem;
+    }
+
+    @include respond(mobile) {
+        font-size: 1.6rem;
+    }
+}
+
+.highlight {
+    color: $teal;
+}
+
+.description {
+    color: $text-muted;
+    font-size: 1.2rem;
+    max-width: 520px;
+    margin-bottom: 80px;
+
+    @include respond(laptop) {
+        font-size: 1.05rem;
+    }
+
+    @include respond(tablet) {
+        margin-bottom: 40px;
+        max-width: 100%;
+    }
+}
+
+/* ======================
+   STATS
+   ====================== */
+.stats-grid {
+    display: flex;
+    gap: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 40px;
+
+    @include respond(laptop) {
+        gap: 40px;
+    }
+
+    @include respond(tablet) {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+}
+
+.stat-item {
+    h3 {
+        font-size: 1.8rem;
+
+        @include respond(tablet) {
+            font-size: 1.5rem;
+        }
+    }
+
+    p {
+        font-size: 0.8rem;
+        color: $text-muted;
+        text-transform: uppercase;
+    }
+}
+
+/* ======================
+   RIGHT PANEL
+   ====================== */
+.right-panel {
+    flex: 1; // Desktop: takes 1 part of available space
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f8fafc;
+    background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+
+    @include respond(tablet) {
+        flex: none;
+        width: 100%;
+        padding: 24px;
+    }
+}
+
+.glass-card {
+    background: $glass;
+    backdrop-filter: blur(20px); // Desktop glassmorphism effect
+    padding: 50px 40px;
+    border-radius: 32px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+
+    // 🔥 Disable backdrop-filter on mobile (scroll killer)
+    @include respond(tablet) {
+        backdrop-filter: none;
+        padding: 32px 24px;
+        border-radius: 24px;
+    }
+}
+
+.card-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+
+    @include respond(tablet) {
+        font-size: 1.8rem;
+    }
+
+    @include respond(mobile) {
+        font-size: 1.6rem;
+    }
+}
+
+/* ======================
+   INSTRUCTION
+   ====================== */
+.instruction-box {
+    background: rgba(45, 212, 191, 0.1);
+    border-left: 4px solid $teal;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+/* ======================
+   BUTTONS
+   ====================== */
+.btn-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.btn {
+    padding: 18px;
+    border-radius: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: $transition;
+
+    @include respond(tablet) {
+        padding: 16px;
+        font-size: 0.95rem;
+    }
+}
+
+.btn-signin {
+    background: $teal;
+    color: $navy;
+}
+
+.btn-signup {
+    background: $white;
+    border: 2px solid #e2e8f0;
+}
+
+/* ======================
+   DIVIDER & FOOTER
+   ====================== */
+.divider {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #cbd5e1;
+
+    &::before,
+    &::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #e2e8f0;
+    }
+
+    span {
+        padding: 0 10px;
+    }
+}
+
+.footer-link {
+    margin-top: 30px;
+    font-size: 0.85rem;
+}

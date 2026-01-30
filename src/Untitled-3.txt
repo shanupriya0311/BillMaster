@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BillMaster - Invoice Detail</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Dark overlay for the background */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Dimmed background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Modal Container */
+        .modal-container {
+            background: white;
+            width: 500px;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* Header Styles */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #9ca3af;
+            cursor: pointer;
+        }
+
+        /* Data Rows */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .label { color: #6b7280; }
+        .value { color: #111827; font-weight: 500; }
+
+        .divider {
+            height: 1px;
+            background: #f3f4f6;
+            margin: 20px 0;
+        }
+
+        /* Item List Styles */
+        .item-details {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .item-qty {
+            color: #9ca3af;
+            font-weight: normal;
+        }
+
+        /* Total Section */
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .total-label {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .total-amount {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #10b981; /* Green color from image */
+        }
+
+        /* Footer Buttons */
+        .modal-footer {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-print {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-refund {
+            background: white;
+            border: 1px solid #fee2e2;
+            color: #ef4444;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay">
+        
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="header-title">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Invoice BM010004</span>
+                </div>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="info-row">
+                <span class="label">Date</span>
+                <span class="value">1/14/2026, 8:06:55 AM</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Cashier</span>
+                <span class="value">John Cashier</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Payment</span>
+                <span class="value">Card</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="item-details">
+                <span>Pepsi 500ml <span class="item-qty">× 2</span></span>
+                <span>₹80</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="info-row">
+                <span class="label">Subtotal</span>
+                <span class="value">₹80.00</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Tax</span>
+                <span class="value">₹9.60</span>
+            </div>
+
+            <div class="total-row">
+                <span class="total-label">Total</span>
+                <span class="total-amount">₹89.60</span>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-print">
+                    <i class="fas fa-print"></i> Print
+                </button>
+                <button class="btn btn-refund">
+                    <i class="fas fa-redo"></i> Refund
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

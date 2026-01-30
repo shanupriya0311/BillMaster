@@ -1,0 +1,364 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  background: #f9fafb;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background: #111827;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.sidebar-logo-box {
+  background: none;
+  color: #10b981;
+  width: auto;
+  height: auto;
+  min-width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  padding: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sidebar-brand-name {
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin-top: -4px;
+}
+
+.brand-sub {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.nav-menu {
+  padding: 16px;
+}
+
+.nav-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  color: #9ca3af;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #1f2937;
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-profile {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #374151;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+.user-name {
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.user-role {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.logout-btn i {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-btn:hover {
+  opacity: 0.8;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.top-header {
+  background: white;
+  padding: 16px 32px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-badge {
+  background: #f3f4f6;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.notification {
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  background: red;
+  border-radius: 50%;
+}
+
+/* CONTENT */
+.content-body {
+  padding: 32px;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.search-container {
+  flex: 1;
+  position: relative;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.search-container i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #e5e7eb;
+}
+
+.icon-circle {
+  background: #ecfdf5;
+  padding: 12px;
+  border-radius: 8px;
+  color: #10b981;
+}
+
+.price {
+  font-weight: bold;
+}
+
+/* ======================
+   MOBILE HAMBURGER MENU
+   ====================== */
+.hamburger-btn {
+  display: none;
+  /* Hidden on desktop */
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 2000;
+  /* Above everything */
+  background: #111827;
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s;
+
+  &:hover {
+    background: #1f2937;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ======================
+   SIDEBAR OVERLAY (MOBILE)
+   ====================== */
+.sidebar-overlay {
+  display: none;
+  /* Hidden on desktop */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1400;
+  /* Below sidebar, above content */
+}
+
+/* ======================
+   SIDEBAR CLOSE BUTTON
+   ====================== */
+.sidebar-close {
+  display: none;
+  /* Hidden on desktop */
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 24px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #1f2937;
+    color: white;
+  }
+}
+
+/* ======================
+   MOBILE RESPONSIVE
+   ====================== */
+@media (max-width: 768px) {
+
+  /* Show hamburger button on mobile */
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Show overlay when sidebar is open */
+  .sidebar-overlay {
+    display: block;
+  }
+
+  /* Show close button on mobile */
+  .sidebar-close {
+    display: block;
+  }
+
+  /* Sidebar mobile behavior */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1500;
+    /* Above overlay, below hamburger */
+    transform: translateX(-100%);
+    /* Hidden by default */
+    transition: transform 0.3s ease;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Show sidebar when open */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Adjust main content to full width on mobile */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Add padding to top of content to avoid hamburger overlap */
+  .content-body {
+    padding-top: 80px;
+  }
+
+  .top-header {
+    padding-left: 72px;
+    /* Space for hamburger button */
+  }
+}
