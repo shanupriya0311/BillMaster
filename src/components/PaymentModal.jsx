@@ -167,10 +167,10 @@ export default function PaymentModal({ isOpen, onClose, total, count, onConfirm 
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="modal-actions">
+                        <div className="payment-modal-actions">
                             <button
                                 onClick={onClose}
-                                className="action-btn btn-cancel"
+                                className="payment-action-btn payment-btn-cancel"
                                 disabled={step === 'processing'}
                             >
                                 <X size={18} className="btn-icon" />
@@ -178,7 +178,7 @@ export default function PaymentModal({ isOpen, onClose, total, count, onConfirm 
                             </button>
                             <button
                                 onClick={handleConfirmClick}
-                                className="action-btn btn-confirm"
+                                className="payment-action-btn payment-btn-confirm"
                                 disabled={step === 'processing'}
                             >
                                 {step === 'processing' ? 'Processing...' : (
@@ -211,12 +211,12 @@ export default function PaymentModal({ isOpen, onClose, total, count, onConfirm 
                             </p>
                         )}
 
-                        <div className="modal-actions" style={{ width: '100%', marginTop: '20px' }}>
-                            <button className="action-btn btn-cancel">
+                        <div className="payment-modal-actions" style={{ width: '100%', marginTop: '20px' }}>
+                            <button className="payment-action-btn payment-btn-cancel">
                                 <Printer size={18} className="btn-icon" />
                                 Print Invoice
                             </button>
-                            <button onClick={handleNewSale} className="action-btn btn-confirm">
+                            <button onClick={handleNewSale} className="payment-action-btn payment-btn-confirm">
                                 New Sale
                             </button>
                         </div>

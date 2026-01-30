@@ -31,19 +31,18 @@ export default function SignUp({ onNavigate }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you would typically send the data to a backend
         console.log("SignUp Data:", formData);
         setShowSuccess(true);
     };
 
     const handleSuccessClose = () => {
         setShowSuccess(false);
-        onNavigate("Home"); // Navigate to login after successful signup
+        onNavigate("Home"); 
     };
 
     return (
         <div className="landing-wrapper">
-            {/* LEFT PANEL */}
+          
             <section className="left-branding">
                 <div className="brand-header">
                     <div className="logo-box">
@@ -104,7 +103,6 @@ export default function SignUp({ onNavigate }) {
                     <p className="card-subtitle">Fill in your business details to get started</p>
 
                     <form onSubmit={handleSubmit} className="login-form signup-form">
-                        {/* User Details Section */}
                         <div className="form-section">
                             <h3 className="section-title">User Details</h3>
 

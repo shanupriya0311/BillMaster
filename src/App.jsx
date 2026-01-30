@@ -26,7 +26,6 @@ import CashierDashboard from "./components/CashierDashboard";
 import CashierPOS from "./components/CashierPOS";
 import CashierSalesHistory from "./components/CashierSalesHistory";
 
-// Manager Imports
 import ManagerDashboard from "./components/ManagerDashboard";
 import ManagerPOS from "./components/ManagerPOS";
 import ManagerProductManagement from "./components/ManagerProductManagement";
@@ -36,26 +35,21 @@ import ManagerReports from "./components/ManagerReports";
 function App() {
   const [currentPage, setCurrentPage] = useState("Welcome");
   const [currentUser, setCurrentUser] = useState(null);
-
-  // Shared user data that can be updated when new employees are added
   const [userdata, setUserdata] = useState([
     { email: "shanu@gmail.com", password: "123", role: "cashier", name: "Shanu", phone: "9876543210" },
     { email: "priya@gmail.com", password: "123", role: "manager", name: "Priya", phone: "9876543211" },
     { email: "vidhya@gmail.com", password: "123", role: "admin", name: "Vidhya", phone: "9876543212" }
   ]);
 
-  // Add new user/employee to the userdata
   const addUser = (newUser) => {
     setUserdata(prev => [...prev, newUser]);
   };
 
-  // Handle login - receives user object and navigates to appropriate dashboard
   const handleLogin = (user, targetPage) => {
     setCurrentUser(user);
     setCurrentPage(targetPage);
   };
 
-  // Handle logout - clear user and go to Welcome
   const handleLogout = () => {
     setCurrentUser(null);
     setCurrentPage("Welcome");

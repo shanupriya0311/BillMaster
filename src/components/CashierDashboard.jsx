@@ -169,10 +169,7 @@ export default function CashierDashboard() {
             <main className="content">
                 <header className="header">
                     <h2 style={{ fontSize: '18px', margin: 0 }}>Dashboard</h2>
-                    <div className="header-right">
-                        <span><Clock size={16} /> 02:30 PM</span>
-                        <Bell size={18} />
-                    </div>
+
                 </header>
 
                 {/* Cards */}

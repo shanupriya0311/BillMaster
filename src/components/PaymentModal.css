@@ -233,13 +233,13 @@
     /* emerald-600 */
 }
 
-.modal-actions {
+.payment-modal-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
 
-.action-btn {
+.payment-action-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,27 +252,27 @@
     border: none;
 }
 
-.btn-cancel {
+.payment-btn-cancel {
     background-color: white;
     border: 1px solid #e2e8f0;
     color: #334155;
 }
 
-.btn-cancel:hover {
+.payment-btn-cancel:hover {
     background-color: #f8fafc;
 }
 
-.btn-confirm {
+.payment-btn-confirm {
     background-color: #34d399;
     color: white;
     box-shadow: 0 4px 6px -1px rgba(52, 211, 153, 0.4);
 }
 
-.btn-confirm:hover {
+.payment-btn-confirm:hover {
     background-color: #10b981;
 }
 
-.btn-confirm:disabled {
+.payment-btn-confirm:disabled {
     background-color: #94a3b8;
     cursor: not-allowed;
     box-shadow: none;

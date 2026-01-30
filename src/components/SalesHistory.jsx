@@ -7,6 +7,8 @@ function SalesHistory({ onNavigate }) {
   const [showInvoice, setShowInvoice] = useState(false);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const handleViewInvoice = (invoice) => {
     setSelectedInvoice(invoice);
@@ -18,11 +20,37 @@ function SalesHistory({ onNavigate }) {
     setSelectedInvoice(null);
   };
 
+  // Helper to parse "Jan 14, 2026, 08:06 AM"
+  const parseDate = (dateStr) => {
+    return new Date(dateStr);
+  };
+
   // ✅ FILTER LOGIC
-  const filteredSales = salesData.filter((tx) =>
-    tx.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    tx.meta.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredSales = salesData.filter((tx) => {
+    const matchesSearch =
+      tx.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      tx.meta.toLowerCase().includes(searchTerm.toLowerCase());
+
+    if (!matchesSearch) return false;
+
+    if (startDate || endDate) {
+      const txDate = parseDate(tx.date);
+
+      if (startDate) {
+        const start = new Date(startDate);
+        start.setHours(0, 0, 0, 0);
+        if (txDate < start) return false;
+      }
+
+      if (endDate) {
+        const end = new Date(endDate);
+        end.setHours(23, 59, 59, 999);
+        if (txDate > end) return false;
+      }
+    }
+
+    return true;
+  });
 
   return (
     <>
@@ -35,8 +63,8 @@ function SalesHistory({ onNavigate }) {
         </div>
 
         {/* Filters/Search */}
-        <div style={{ display: "flex", gap: "12px", marginBottom: "24px", background: "#fff", padding: "12px", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "10px", color: "#94a3b8" }}>
+        <div style={{ display: "flex", gap: "12px", marginBottom: "24px", background: "#fff", padding: "12px", borderRadius: "12px", border: "1px solid #e2e8f0", flexWrap: "wrap", alignItems: "center" }}>
+          <div style={{ flex: 1, minWidth: "200px", display: "flex", alignItems: "center", gap: "10px", color: "#94a3b8" }}>
             <i className="fas fa-search"></i>
             <input
               type="text"
@@ -46,9 +74,35 @@ function SalesHistory({ onNavigate }) {
               style={{ border: "none", outline: "none", width: "100%", fontSize: "14px", color: "#0f172a" }}
             />
           </div>
-          <button style={{ display: "flex", alignItems: "center", gap: "8px", padding: "8px 16px", borderRadius: "8px", border: "1px solid #e2e8f0", background: "white", color: "#0f172a", fontWeight: "500", cursor: "pointer" }}>
-            <i className="far fa-calendar-alt"></i> Date Range
-          </button>
+
+          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px", background: "#f8fafc", padding: "4px 8px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+              <span style={{ fontSize: "12px", color: "#64748b" }}>From:</span>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                style={{ border: "none", background: "transparent", fontSize: "13px", outline: "none", color: "#334155" }}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px", background: "#f8fafc", padding: "4px 8px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+              <span style={{ fontSize: "12px", color: "#64748b" }}>To:</span>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                style={{ border: "none", background: "transparent", fontSize: "13px", outline: "none", color: "#334155" }}
+              />
+            </div>
+            {(startDate || endDate) && (
+              <button
+                onClick={() => { setStartDate(""); setEndDate(""); }}
+                style={{ border: "none", background: "transparent", color: "#ef4444", fontSize: "13px", cursor: "pointer", textDecoration: "underline" }}
+              >
+                Clear
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Transactions List */}

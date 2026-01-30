@@ -6,7 +6,6 @@ export default function Welcome({ onNavigate }) {
 
     return (
         <div className="page">
-            {/* LEFT PANEL */}
             <section className="left-panel">
                 <div className="welcome-logo-box">
                     <div className="logo-icon">
@@ -75,9 +74,7 @@ export default function Welcome({ onNavigate }) {
                         </button>
                     </div>
 
-                    <p className="footer-link">
-                        Need enterprise assistance? <a href="#">Contact Sales</a>
-                    </p>
+                    
                 </div>
             </section>
         </div>

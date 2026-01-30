@@ -13,7 +13,6 @@ export default function Dashboard() {
     const categoryRef = useRef(null);
     const chartInstances = useRef({});
 
-    // State for dashboard data
     const [stats, setStats] = useState({
         todaySales: 0,
         transactions: 0,
@@ -23,14 +22,9 @@ export default function Dashboard() {
     const [recentTransactions, setRecentTransactions] = useState([]);
 
     useEffect(() => {
-        // --- Process Data ---
-        // 1. Calculate Stats (Using "Jan 16, 2026" as 'Today' for demo, or calculate based on data)
-        // For this demo, let's aggregate totals from the whole dataset to show meaningful numbers, 
-        // or filter for the latest date in the dataset.
-        // Let's use the latest date present in data as "Today"
 
         const sortedData = [...salesData].sort((a, b) => new Date(b.date) - new Date(a.date));
-        const latestDateStr = sortedData[0]?.date.split(",")[0]; // e.g., "Jan 16, 2026"
+        const latestDateStr = sortedData[0]?.date.split(",")[0]; 
 
         // Filter for "Today's" data
         const todayData = salesData.filter(item => item.date.startsWith(latestDateStr));
@@ -42,7 +36,7 @@ export default function Dashboard() {
             todaySales: totalSalesToday.toLocaleString('en-IN'),
             transactions: todayData.length,
             tax: totalTaxToday.toLocaleString('en-IN'),
-            lowStock: 0 // Placeholder as logic depends on product inventory not in sales data
+            lowStock: 0 
         });
 
         // 2. Recent Transactions
@@ -169,10 +163,6 @@ export default function Dashboard() {
             <main className="content">
                 <header className="header">
                     <h2 style={{ fontSize: '18px', margin: 0 }}>Dashboard</h2>
-                    <div className="header-right">
-                        <span><Clock size={16} /> 02:30 PM</span>
-                        <Bell size={18} />
-                    </div>
                 </header>
 
                 {/* Cards */}

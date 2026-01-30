@@ -10,7 +10,7 @@ import deleteIcon from '../assets/delete.png';
 const CustomerCard = ({ customer, onDelete }) => (
     <div className="card">
         <div className="card-header">
-            <div className="avatar">👤</div>
+            <div className="customer-avatar">👤</div>
             <div className="info">
                 <h3>{customer.name}</h3>
                 <p>📞 {customer.phone}</p>
