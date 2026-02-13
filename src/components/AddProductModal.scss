@@ -4,8 +4,6 @@
   --text: #1e293b;
   --muted: #64748b;
 }
-
-/* Overlay */
 .ap-overlay {
   position: fixed;
   inset: 0;
@@ -15,8 +13,6 @@
   justify-content: center;
   z-index: 1000;
 }
-
-/* Modal */
 .ap-modal {
   background: white;
   width: 560px;
@@ -25,7 +21,6 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* Header */
 .ap-header {
   display: flex;
   justify-content: space-between;

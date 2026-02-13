@@ -190,15 +190,11 @@ const ManagerReports = () => {
     // Export to PDF
     const handleExportPDF = () => {
         const doc = new jsPDF();
-
-        // Title
         doc.setFontSize(18);
         doc.text("BillMaster - Reports & Analytics", 14, 20);
-
         doc.setFontSize(12);
         doc.text("End of Day Settlement", 14, 30);
 
-        // Metrics Section
         doc.setFontSize(10);
         let yPos = 40;
         doc.text(`Gross Sales: ₹${metrics.grossSales}`, 14, yPos);
@@ -206,7 +202,6 @@ const ManagerReports = () => {
         doc.text(`Tax Collected: ₹${metrics.taxCollected}`, 14, yPos + 14);
         doc.text(`Net Revenue: ₹${metrics.netRevenue}`, 14, yPos + 21);
 
-        // Payment Breakdown Table
         yPos += 35;
         doc.autoTable({
             startY: yPos,

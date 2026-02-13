@@ -139,15 +139,28 @@ function ProductManagement() {
 
             <div className="action-buttons">
               {/* Import */}
-              <label className="btn btn-outline">
-                Import
-                <input
-                  type="file"
-                  accept=".csv"
-                  onChange={handleImportCSV}
-                  style={{ display: "none" }}
-                />
-              </label>
+              <select
+                className="btn btn-outline"
+                onChange={(e) => {
+                  if (e.target.value === "csv") {
+                    document.getElementById("csv-import-input").click();
+                  } else if (e.target.value === "barcode") {
+                    alert("Barcode scanning feature coming soon!");
+                  }
+                  e.target.value = ""; // Reset select
+                }}
+              >
+                <option value="">Import</option>
+                <option value="barcode">Scan Barcode</option>
+                <option value="csv">Import CSV</option>
+              </select>
+              <input
+                id="csv-import-input"
+                type="file"
+                accept=".csv"
+                onChange={handleImportCSV}
+                style={{ display: "none" }}
+              />
 
               {/* Export */}
               <button className="btn btn-outline" onClick={handleExport}>

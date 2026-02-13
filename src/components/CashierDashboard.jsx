@@ -23,11 +23,7 @@ export default function CashierDashboard() {
     const [recentTransactions, setRecentTransactions] = useState([]);
 
     useEffect(() => {
-        // --- Process Data ---
-        // 1. Calculate Stats (Using "Jan 16, 2026" as 'Today' for demo, or calculate based on data)
-        // For this demo, let's aggregate totals from the whole dataset to show meaningful numbers, 
-        // or filter for the latest date in the dataset.
-        // Let's use the latest date present in data as "Today"
+       
 
         const sortedData = [...salesData].sort((a, b) => new Date(b.date) - new Date(a.date));
         const latestDateStr = sortedData[0]?.date.split(",")[0]; // e.g., "Jan 16, 2026"

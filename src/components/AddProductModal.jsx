@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddProductModal.scss";
 
 function AddProductModal({ onClose, onAdd, initialData }) {
-  // ✅ Derive initial state ONCE (no useEffect → no ESLint warning)
+
   const [form, setForm] = useState(() => {
     if (initialData) {
       return {
@@ -35,7 +35,7 @@ function AddProductModal({ onClose, onAdd, initialData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd(form);   // add OR update handled in parent
+    onAdd(form);
     onClose();
   };
 
@@ -137,12 +137,23 @@ function AddProductModal({ onClose, onAdd, initialData }) {
           </div>
 
           {/* Row 4 */}
-          <div className="ap-group ap-full">
+          <div className="ap-group ">
             <label>Low Stock Threshold</label>
             <input
               name="lowStock"
               type="number"
               value={form.lowStock}
+              onChange={handleChange}
+            />
+          </div>
+          {/*Row 5 */}
+          <div className="ap-group">
+            <label>Add Image</label>
+            <input
+              type="file"
+              name="image"
+              accept=".png,.svg,image/png,image/svg+xml"
+
               onChange={handleChange}
             />
           </div>

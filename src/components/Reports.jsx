@@ -12,7 +12,7 @@ import { Download, FileText, Mail, FileSpreadsheet } from "lucide-react";
 import "./Reports.scss";
 import { salesData } from "./salesdata.js";
 import * as XLSX from "xlsx";
-import { jsPDF } from "jspdf";
+import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -189,63 +189,82 @@ const Reports = ({ onNavigate = () => { } }) => {
 
     // Export to PDF
     const handleExportPDF = () => {
-        const doc = new jsPDF();
+        try {
+            console.log("Starting PDF export...");
+            const doc = new jsPDF();
+            console.log("jsPDF instance created:", doc);
+            console.log("autoTable available:", typeof doc.autoTable);
 
-        // Title
-        doc.setFontSize(18);
-        doc.text("BillMaster - Reports & Analytics", 14, 20);
+            // Title
+            doc.setFontSize(18);
+            doc.text("BillMaster - Reports & Analytics", 14, 20);
 
-        doc.setFontSize(12);
-        doc.text("End of Day Settlement", 14, 30);
+            doc.setFontSize(12);
+            doc.text("End of Day Settlement", 14, 30);
 
-        // Metrics Section
-        doc.setFontSize(10);
-        let yPos = 40;
-        doc.text(`Gross Sales: ₹${metrics.grossSales}`, 14, yPos);
-        doc.text(`Transactions: ${metrics.transactions}`, 14, yPos + 7);
-        doc.text(`Tax Collected: ₹${metrics.taxCollected}`, 14, yPos + 14);
-        doc.text(`Net Revenue: ₹${metrics.netRevenue}`, 14, yPos + 21);
+            // Metrics Section
+            doc.setFontSize(10);
+            let yPos = 40;
+            doc.text(`Gross Sales: ₹${metrics.grossSales}`, 14, yPos);
+            doc.text(`Transactions: ${metrics.transactions}`, 14, yPos + 7);
+            doc.text(`Tax Collected: ₹${metrics.taxCollected}`, 14, yPos + 14);
+            doc.text(`Net Revenue: ₹${metrics.netRevenue}`, 14, yPos + 21);
+            console.log("Metrics section added");
 
-        // Payment Breakdown Table
-        yPos += 35;
-        doc.autoTable({
-            startY: yPos,
-            head: [['Payment Method', 'Amount', 'Percentage']],
-            body: paymentBreakdown.map(p => [p.method, `₹${p.amount}`, `${p.percentage}%`]),
-            theme: 'grid',
-            headStyles: { fillColor: [20, 184, 166] }
-        });
+            // Payment Breakdown Table
+            yPos += 35;
+            console.log("Creating payment breakdown table...");
+            doc.autoTable({
+                startY: yPos,
+                head: [['Payment Method', 'Amount', 'Percentage']],
+                body: paymentBreakdown.map(p => [p.method, `₹${p.amount}`, `${p.percentage}%`]),
+                theme: 'grid',
+                headStyles: { fillColor: [20, 184, 166] }
+            });
+            console.log("Payment breakdown table created");
 
-        // Tax Collection Table
-        yPos = doc.lastAutoTable.finalY + 15;
-        doc.text("Tax Collection Report", 14, yPos);
-        doc.autoTable({
-            startY: yPos + 5,
-            head: [['Date', 'Taxable Sales', 'Tax', 'Transactions']],
-            body: taxByDate.map(row => [
-                row.date,
-                `₹${row.taxableSales.toFixed(2)}`,
-                `₹${row.tax.toFixed(2)}`,
-                row.transactions
-            ]),
-            theme: 'grid',
-            headStyles: { fillColor: [20, 184, 166] }
-        });
+            // Tax Collection Table
+            yPos = doc.lastAutoTable.finalY + 15;
+            doc.text("Tax Collection Report", 14, yPos);
+            console.log("Creating tax collection table...");
+            doc.autoTable({
+                startY: yPos + 5,
+                head: [['Date', 'Taxable Sales', 'Tax', 'Transactions']],
+                body: taxByDate.map(row => [
+                    row.date,
+                    `₹${row.taxableSales.toFixed(2)}`,
+                    `₹${row.tax.toFixed(2)}`,
+                    row.transactions
+                ]),
+                theme: 'grid',
+                headStyles: { fillColor: [20, 184, 166] }
+            });
+            console.log("Tax collection table created");
 
-        // Footer
-        const pageCount = doc.internal.getNumberOfPages();
-        doc.setFontSize(8);
-        for (let i = 1; i <= pageCount; i++) {
-            doc.setPage(i);
-            doc.text(
-                `Generated on ${new Date().toLocaleString()} - Page ${i} of ${pageCount}`,
-                14,
-                doc.internal.pageSize.height - 10
-            );
+            // Footer
+            const pageCount = doc.internal.getNumberOfPages();
+            doc.setFontSize(8);
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.text(
+                    `Generated on ${new Date().toLocaleString()} - Page ${i} of ${pageCount}`,
+                    14,
+                    doc.internal.pageSize.height - 10
+                );
+            }
+            console.log("Footer added");
+
+            // Download
+            const filename = `BillMaster_Report_${new Date().toLocaleDateString().replace(/\//g, '-')}.pdf`;
+            console.log("Saving PDF as:", filename);
+            doc.save(filename);
+            console.log("✅ PDF export completed successfully!");
+        } catch (error) {
+            console.error("❌ PDF Export Error:", error);
+            console.error("Error details:", error.message);
+            console.error("Stack trace:", error.stack);
+            alert(`PDF Export Failed: ${error.message}`);
         }
-
-        // Download
-        doc.save(`BillMaster_Report_${new Date().toLocaleDateString().replace(/\//g, '-')}.pdf`);
     };
 
     // Email Report

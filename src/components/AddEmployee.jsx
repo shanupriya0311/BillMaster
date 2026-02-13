@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './AddEmployee.scss';
 
 const AddEmployee = ({ userdata, addUser }) => {
-    // Convert userdata to employees format with id and status
     const [employees, setEmployees] = useState(
         userdata.map((user, index) => ({
             id: index + 1,
@@ -31,8 +30,6 @@ const AddEmployee = ({ userdata, addUser }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Add to local employees list for display
         const newEmployee = {
             id: Date.now(),
             name: formData.name,
@@ -165,7 +162,6 @@ const AddEmployee = ({ userdata, addUser }) => {
                 </div>
             </div>
 
-            {/* Add Employee Modal */}
             {showModal && (
                 <div className="modal-overlay" onClick={() => setShowModal(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>

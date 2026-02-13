@@ -1,4 +1,6 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -232,6 +234,7 @@ td {
 .text-danger {
   color: #ef4444;
 }
+
 .action-buttons {
   display: flex;
   gap: 10px;
@@ -264,13 +267,55 @@ td {
 .btn-primary:hover {
   opacity: 0.9;
 }
-.product{
+
+/* Custom Select Dropdown Styling */
+select.btn-outline {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+select.btn-outline:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+select.btn-outline:focus {
+  outline: none;
+  border-color: #22a699;
+  box-shadow: 0 0 0 3px rgba(34, 166, 153, 0.1);
+}
+
+select.btn-outline option {
+  padding: 10px;
+  background: white;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+select.btn-outline option:hover {
+  background: #f8fafc;
+}
+
+select.btn-outline option[value=""] {
+  color: #64748b;
+}
+
+.product {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 10px;
   background-color: #cbd5f5;
 }
+
 /* 🔹 PAGE HEADER (Product Management) */
 .page-header {
   margin-bottom: 24px;
